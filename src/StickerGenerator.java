@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,7 +14,8 @@ public class StickerGenerator {
     public void createSticker() throws Exception {
 
         // get/read img
-        InputStream inputStream = new FileInputStream(new File("imgs/BladeRunner.jpg"));
+        //InputStream inputStream = new FileInputStream(new File("imgs/BladeRunner.jpg"));
+        InputStream inputStream = new URL("https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX128_CR0,3,128,176_AL_.jpg").openStream();
         BufferedImage originalImg = ImageIO.read(inputStream);
 
         // create a new img with transparenci and new size
