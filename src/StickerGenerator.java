@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
@@ -10,7 +13,8 @@ public class StickerGenerator {
     public void createSticker() throws Exception {
 
         // get/read img
-        BufferedImage originalImg = ImageIO.read(new File("imgs/BladeRunner.jpg"));
+        InputStream inputStream = new FileInputStream(new File("imgs/BladeRunner.jpg"));
+        BufferedImage originalImg = ImageIO.read(inputStream);
 
         // create a new img with transparenci and new size
 
@@ -30,7 +34,7 @@ public class StickerGenerator {
         graphics.setFont(font);
 
         // write something on the img
-        graphics.drawString("BladeRunner", 0, newHeight - 25);
+        graphics.drawString("TestBladeRunner", 0, newHeight - 25);
 
         // write the img into a file
         ImageIO.write(newImg, "png", new File("imgOutput/outBladeRunner.png"));
