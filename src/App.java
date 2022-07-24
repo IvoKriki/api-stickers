@@ -1,4 +1,6 @@
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -23,10 +25,17 @@ public class App {
         List<Map<String, String>> filmList = parcer.parse(body);
         
         // exibir e manipular os dados
+        var generate = new StickerGenerator();
+        
         for (Map<String,String> movie : filmList) {
-            System.out.println(movie.get("title"));
-            System.out.println(movie.get("rank"));
-            System.out.println(movie.get("image"));
+
+            String urlImg = movie.get("image");
+            String urlTitle = movie.get("title");
+
+            InputStream inputStream = new URL(urlImg).openStream();
+            String imgOutput = urlTitle + ".png";
+
+            generate.createSticker(inputStream, imgOutput);
         }
     }
 }
